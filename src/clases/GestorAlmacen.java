@@ -32,9 +32,8 @@ public class GestorAlmacen {
     private Producto[] existenciasProducto; //Declaración de un array de objetos Producto para almacenar cada objeto fabricado
 
     /**
-     * Constructor por defecto de la clase usado para inicializar el atributo
-     * pedidoDePizzas acorde con el número máximo de pizzas que podrán existir
-     * en un pedido
+     * Constructor por defecto de la clase usado para inicializar el array <strong>existenciasProductos </strong>
+     * que almacenará los objetos, y cuyo tamaño será acorde con la constante <strong>TAMAÑO_ALMACEN</strong>.
      */
     public GestorAlmacen() {
         existenciasProducto = new Producto[TAMAÑO_ALMACEN]; //Inalización del array con 150 posiciones para almacenar objetos Producto
@@ -117,9 +116,13 @@ public class GestorAlmacen {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Introduzca el numero de productos a cargar por defecto(Al menos 4): ");
         Random r = new Random();
-        int cantidadProducto;
+        int cantidadProducto = 0;
         do {
-            cantidadProducto = teclado.nextInt();
+            try{
+            cantidadProducto = Integer.parseInt(teclado.nextLine());
+            }catch (NumberFormatException e){
+               System.out.println("El dato introducido no es un valor numérico valido");
+            }
             if (cantidadProducto >= 4) {
                 String nombreUsu;
                 for (int i = 0; i < cantidadProducto; i++) {
@@ -131,7 +134,7 @@ public class GestorAlmacen {
                     System.out.println(nuevoProducto);
                 }
             } else {
-                System.out.println("El número introducido debe ser mayor o igual a 4.");
+                System.out.println("El número introducido debe ser un número entero mayor o igual a 4.");
             }
         } while (cantidadProducto < 4);
     }
@@ -161,7 +164,7 @@ public class GestorAlmacen {
         //Variables de entrada
         String criterioBusqueda;
         String nombreBusqueda;
-        int codigoBusqueda;
+        int codigoBusqueda = 0;
         
         //Variables auxiliares
         boolean encontrado = false;
@@ -190,7 +193,11 @@ public class GestorAlmacen {
             }
         } else {
             System.out.println("Indique el CODIGO del producto a buscar:");
-            codigoBusqueda = teclado.nextInt();
+            try{
+            codigoBusqueda = Integer.parseInt(teclado.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Debe introducir un código numérico");
+            }
             for (int i = 0; i < existenciasProducto.length && existenciasProducto[i] != null; i++) {
                 if (existenciasProducto[i].getCodigo() == codigoBusqueda){
                     posicion = i;
