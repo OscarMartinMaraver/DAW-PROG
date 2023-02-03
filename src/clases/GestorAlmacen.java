@@ -250,9 +250,10 @@ public class GestorAlmacen {
                         existenciasProducto[i] = existenciasProducto[i + 1]; // y movemos los objetos una posición hacia atras
                     }
                     Producto.posicionEnAlmacen--; //Decremento el número de productos en el almacén.
+                    System.out.println("El producto ha sido eliminado.");
                     terminar = true;
                 } else {
-                    System.out.println("El producto no ha sido eliminado.");
+                    System.out.println("El producto NO ha sido eliminado.");
                     terminar = true;
                 }
             }
