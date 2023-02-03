@@ -46,9 +46,9 @@ public class Producto {
     /**
      * Constructor de la clase.Crea un objeto Producto asignando como valores de
      * sus atributos los datos solicitados al usuario por pantalla.
-     * @param nombreUsu - Variable String que recoge el nombre del producto indicado por usuario e introducido como parámetro del constructor
-     * @param cantidadUsu - Variable int que recoge la cantidad del producto indicado por usuario e introducido como parámetro del constructor
-     * @param precioUsu - Variable double que recoge el precio del producto indicado por usuario e introducido como parámetro del constructor
+     * @param nombreUsu Variable String que recoge el nombre del producto indicado por usuario e introducido como parámetro del constructor
+     * @param cantidadUsu Variable int que recoge la cantidad del producto indicado por usuario e introducido como parámetro del constructor
+     * @param precioUsu Variable double que recoge el precio del producto indicado por usuario e introducido como parámetro del constructor
      */
     public Producto(String nombreUsu, int cantidadUsu, double precioUsu) {
         Producto.posicionEnAlmacen++;
@@ -103,7 +103,7 @@ public class Producto {
     
     /**
      * Método que asigna un nuevo valor al atributo <strong>precio</strong>, 
-     * el cual será llamado desde el menún de producto
+     * el cual será llamado desde el menú de producto
      * en la clase <strong>GestorAlmacen</strong>.
      * @return -Nuevo valor del atributo <strong>precio</strong>(double)
      */
@@ -118,7 +118,7 @@ public class Producto {
     
     /**
      * Método que asigna un nuevo valor al atributo <strong>cantidad</strong>, 
-     * el cual será llamado desde el menún de producto
+     * el cual será llamado desde el menú de producto
      * en la clase <strong>GestorAlmacen</strong>.
      * @return -Nuevo valor del atributo <strong>cantidad</strong>(int).
      */

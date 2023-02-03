@@ -227,10 +227,15 @@ public class GestorAlmacen {
         Scanner teclado = new Scanner(System.in);
         boolean terminar = false;
         String confirmarEliminar;
+        int posicion=0;
         do {
             System.out.println("Indique la posición ocupada por el producto que desea eliminar");
-            int posicion = teclado.nextInt() - 1;       //Posicion indicada-1(el array comienza en 0)   
-            if (existenciasProducto[posicion] == null || posicion == -1) {
+            try{
+            posicion = Integer.parseInt(teclado.nextLine()) - 1;       //Posicion indicada-1(el array comienza en 0)
+            }catch (NumberFormatException e){
+                System.out.println("Debe indtroducir un número entero");
+            }
+            if (existenciasProducto[posicion] == null || posicion <= 0) {
                 System.out.println("El producto que desea eliminar no existe");
             } else {
                 System.out.println("El producto que va eliminara es: ");
