@@ -13,14 +13,20 @@ import java.util.Scanner;
  * <li><strong>Nombre</strong> – Nombre del producto.</li>
  * <li><strong>Cantidad</strong> – Cantidad del producto que tenemos en la tienda.</li>
  * <li><strong>Precio</strong> – Precio por unidad del producto.</li>
+ * <li><strong>posicionEnAlmacén</strong> – Se trata de un atibuto de clase que nos indica
+ * la posición que ocupa cada objeto producto dentro de la array de producto, lo que nos permitirá eliminar un producto
+ * de la misma. Este variará (incremento y decremento) en función de la operación.</li>
+ * <li><strong>productoCreado</strong> – un atributo de clase que va incrementado con cada objeto de clase creado y que será usado para
+ * asignar un código numero correlativo a cada producto. Este no decrementa, por lo que si tras eliminar un producto
+ * se crea uno nuevo, el código asignado a este continuará incrementandose para que no exista repeticiones de códigos de producto.</li>
  * </ul>
  * @author Martin Maraver
  */
 public class Producto {
 
 // ATRIBUTOS DE CLASE: Común para todos los objetos clase Producto creados
-    static int posicionEnAlmacen; //Para indicar la posición que ocupará en el almacen
-    static int productoCreado;     //Servirá para conocer el número de producto creado y asignar el código.
+    static int posicionEnAlmacen; //Para indicar la posición que ocupará en el almacen cada producto
+    static int productoCreado;     //Servirá para conocer el número de productos creado y asignar un código numerico.
     
 // ATRIBUTOS DE OBJETO: cada producto tendrá su propio valor para representar estas características
 // ------------------------------------------------------------------------------------------------
@@ -40,9 +46,9 @@ public class Producto {
     /**
      * Constructor de la clase.Crea un objeto Producto asignando como valores de
      * sus atributos los datos solicitados al usuario por pantalla.
-     * @param nombreUsu
-     * @param cantidadUsu
-     * @param precioUsu
+     * @param nombreUsu - Variable String que recoge el nombre del producto indicado por usuario e introducido como parámetro del constructor
+     * @param cantidadUsu - Variable int que recoge la cantidad del producto indicado por usuario e introducido como parámetro del constructor
+     * @param precioUsu - Variable double que recoge el precio del producto indicado por usuario e introducido como parámetro del constructor
      */
     public Producto(String nombreUsu, int cantidadUsu, double precioUsu) {
         Producto.posicionEnAlmacen++;
@@ -56,18 +62,32 @@ public class Producto {
     
     //METODOS GETTER (muestra los valores de los atributos del objeto)
     
+    /**
+     * 
+     * @return Atributo nombre del producto
+     */
     public String getNombre(){
         return this.nombre;
     }
-    
+    /**
+     * 
+     * @return Atributo codigo del producto (entero). Es un número consecutivo que coincide con el número
+     * de objetos creados. No decrementa, para que no pueda repetirse en caso de eleiminar algún objeto
+     */
     public int getCodigo(){
         return this.codigo;
     }
-    
+    /**
+     * 
+     * @return Atributo cantidad (entero)
+     */
     public int getCantidad(){
         return this.cantidad;
     }
-    
+    /**
+     * 
+     * @return  Atributo precio (double).
+     */
     public double getPrecio(){
         return this.precio;
     }
@@ -81,6 +101,12 @@ public class Producto {
     
     //METODOS SETTER (Asignan valores a los atributos)
     
+    /**
+     * Método que asigna un nuevo valor al atributo <strong>precio</strong>, 
+     * el cual será llamado desde el menún de producto
+     * en la clase <strong>GestorAlmacen</strong>.
+     * @return -Nuevo valor del atributo <strong>precio</strong>(double)
+     */
     public double modificarPrecio(){ 
         Scanner teclado=new Scanner(System.in); 
         System.out.println("introduzca el nuevo precio: ");
@@ -90,6 +116,12 @@ public class Producto {
         return precio;
     }
     
+    /**
+     * Método que asigna un nuevo valor al atributo <strong>cantidad</strong>, 
+     * el cual será llamado desde el menún de producto
+     * en la clase <strong>GestorAlmacen</strong>.
+     * @return -Nuevo valor del atributo <strong>cantidad</strong>(int).
+     */
     public int modificarCantidad(){ 
         Scanner teclado=new Scanner(System.in); 
         System.out.println("Asigne nueva cantidad disponible: ");
