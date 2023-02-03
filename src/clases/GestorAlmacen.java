@@ -128,7 +128,7 @@ public class GestorAlmacen {
                 for (int i = 0; i < cantidadProducto; i++) {
                     int cantidadUsu = r.nextInt(50);
                     double precioUsu = r.nextDouble() * 10;
-                    nombreUsu = "Prueba nº" + (Producto.productoCreado + 1);
+                    nombreUsu = "Prueba N" + (Producto.productoCreado + 1);
                     Producto nuevoProducto = new Producto(nombreUsu, cantidadUsu, precioUsu);
                     existenciasProducto[Producto.posicionEnAlmacen - 1] = nuevoProducto;
                     System.out.println(nuevoProducto);
@@ -233,9 +233,11 @@ public class GestorAlmacen {
             try{
             posicion = Integer.parseInt(teclado.nextLine()) - 1;       //Posicion indicada-1(el array comienza en 0)
             }catch (NumberFormatException e){
-                System.out.println("Debe indtroducir un número entero");
+                System.out.println("Debe introducir un número entero");
             }
-            if (existenciasProducto[posicion] == null || posicion <= 0) {
+            if(posicion<0){
+                System.out.println("La posición introducida debe ser mayor de 0");
+            }else if(existenciasProducto[posicion] == null) {
                 System.out.println("El producto que desea eliminar no existe");
             } else {
                 System.out.println("El producto que va eliminara es: ");
@@ -250,7 +252,8 @@ public class GestorAlmacen {
                     Producto.posicionEnAlmacen--; //Decremento el número de productos en el almacén.
                     terminar = true;
                 } else {
-                    terminar = false;
+                    System.out.println("El producto no ha sido eliminado.");
+                    terminar = true;
                 }
             }
         } while (!terminar);
@@ -339,9 +342,11 @@ public class GestorAlmacen {
      */
     public void mostrarStockBajo() {
         System.out.println("ATENCIÓN: De los siguientes productos quedan menos de 5 unidades en existencia:");
+        System.out.println("-------------------------------------------------------------------------------");
+        System.out.println();
         for (int i = 0; i < existenciasProducto.length && existenciasProducto[i] != null; i++) {
             if (existenciasProducto[i].getCantidad() < STOCK_MIN) {
-                System.out.printf("Del producto %s con código: %d, quedan %d unidades en stock\n", existenciasProducto[i].getNombre(), existenciasProducto[i].getCodigo(), existenciasProducto[i].getCantidad());
+                System.out.printf("* Del producto %s con código: %d, quedan %d unidades en stock\n", existenciasProducto[i].getNombre(), existenciasProducto[i].getCodigo(), existenciasProducto[i].getCantidad());
             }
         }
     }
